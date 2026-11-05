@@ -1,97 +1,129 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Hotfix
 
-# Getting Started
+**English** | [简体中文](README.zh-CN.md)
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+A self-hosted, signed over-the-air update system for React Native 0.87 and the
+New Architecture.
 
-## Step 1: Start Metro
+This repository is both a runnable reference app and a npm workspace containing
+the client SDK, build/publish CLI, protocol package, and update server. The
+design follows the core ideas used by Expo Updates: signed manifests, explicit
+runtime compatibility, downloaded asset trees, launch-time bundle selection,
+and crash rollback. It does not depend on Expo or Expo Updates.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+> Status: `0.1.0` reference implementation. The protocol and native APIs are
+> usable, but the project still needs a broader device/CI matrix and a
+> production deployment security review before critical production use.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Packages
 
-```sh
-# Using npm
-npm start
+| Package | Purpose |
+| --- | --- |
+| [`react-native-hotfix`](packages/react-native-hotfix) | React Native client SDK and New Architecture TurboModule |
+| [`react-native-hotfix-cli`](packages/hotfix-cli) | Hermes bundle build and publish commands |
+| [`react-native-hotfix-server`](packages/hotfix-server) | Signed manifest and immutable asset server |
+| [`react-native-hotfix-protocol`](packages/hotfix-protocol) | Manifest v1 schema, canonicalization, and validation |
 
-# OR using Yarn
-yarn start
-```
+## How it works
 
-## Step 2: Build and run your app
+1. The app ships with a normal embedded React Native bundle.
+2. The CLI produces a platform-specific Hermes bytecode bundle, assets, and an
+   update manifest.
+3. The server verifies every upload, signs the canonical manifest with
+   RSA-SHA256, and activates it for a channel/runtime/platform.
+4. The client fetches a release using an installation ID for deterministic
+   percentage rollout.
+5. Native code verifies the manifest signature before parsing it, then verifies
+   every file size and SHA-256 digest.
+6. The complete update is moved into an immutable update directory. The next
+   cold launch selects that directory as the JavaScript bundle.
+7. `HotfixProvider` confirms a successful JavaScript launch. Repeated failed
+   launches automatically return to the previous bundle or the embedded bundle.
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+See [Architecture](docs/architecture.md), [Security](docs/security.md), and
+[Release workflow](docs/releasing.md) for the detailed design. Chinese versions
+are available under [`docs/zh-CN/`](docs/zh-CN/).
 
-### Android
+## Local quick start
 
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Prerequisites: Node.js 22.11+, JDK 17, and Xcode 16.1+ for React Native 0.87.
 
 ```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npm install
+npm run hotfix:setup
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+`hotfix:setup` generates a local signing key if needed and writes its public key
+into this demo's native configuration. For a new project, follow
+[Getting started](docs/getting-started.md).
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+Start the server:
 
-## Step 3: Modify your app
+```sh
+HOTFIX_PRIVATE_KEY=.hotfix/keys/private.pem \
+HOTFIX_ADMIN_TOKEN=replace-with-a-long-random-token \
+npm run server
+```
 
-Now that you have successfully run the app, let's make changes!
+Build and publish an update:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+```sh
+npm run hotfix:build
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+HOTFIX_ADMIN_TOKEN=replace-with-a-long-random-token \
+node packages/hotfix-cli/bin/hotfix.mjs publish \
+  --server http://localhost:3000 \
+  --input .hotfix/dist/ios-1.0.0 \
+  --rollout-percent 10
+```
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Run Android against `10.0.2.2:3000` or iOS against `127.0.0.1:3000`, then tap
+**Check for update**. Kill and cold-start the app to activate the downloaded
+bundle.
 
-## Congratulations! :tada:
+## Development
 
-You've successfully run and modified your React Native App. :partying_face:
+```sh
+npm test
+npm run test:hotfix
+npm run lint
+npx tsc --noEmit
+```
 
-### Now what?
+The root app demonstrates the SDK. The packages under `packages/` are published
+independently. Run `npm run release:check` before publishing.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+## Publishing the packages
 
-# Troubleshooting
+```sh
+npm login
+npm run release:check
+npm run release:publish
+```
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+The publish script releases the protocol, server, CLI, and client packages in
+dependency order through the official npm registry.
 
-# Learn More
+For the GitHub workflow, configure an `NPM_TOKEN` repository secret and push a
+version tag:
 
-To learn more about React Native, take a look at the following resources:
+```sh
+git tag v0.1.0
+git push github master --follow-tags
+```
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+The release workflow runs the full checks, publishes all packages with npm
+provenance, and creates a GitHub release.
+
+## Important limitations
+
+- `v0.1` activates downloaded updates on the next cold launch. It does not
+  reload the running React instance.
+- Channel pointers and upload staging target a single server process. Multi-node
+  deployments need shared transactional storage or object-store coordination.
+- App Store and Google Play policies still apply. OTA code updates are not a
+  way to bypass review or platform security requirements.
+
+## License
+
+[MIT](LICENSE)

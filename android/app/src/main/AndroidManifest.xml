@@ -11,6 +11,24 @@
       android:theme="@style/AppTheme"
       android:usesCleartextTraffic="${usesCleartextTraffic}"
       android:supportsRtl="true">
+      <meta-data
+        android:name="com.reactnativehotfix.MANIFEST_URL"
+        android:value="http://10.0.2.2:3000/v1/check" />
+      <meta-data
+        android:name="com.reactnativehotfix.PUBLIC_KEY"
+        android:value="MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAw42OiBEYX7XYyEG4+R9pphSmBUZFZgQ7P0aaHDtOtz0fDG1h2hnHXoXAGcLF6M+34FEO+mNvcLcxLokeDdjBx2QHey1Cfxjm3ZIleUPSAyV2ac5VVTsp4ievcIxn79ttHtIyCxogxXWlrgEMlAiAfBohgCOoI15mbWvcKfXdfKupmTCgmCY/9s7LBfLb5Rqr3/E4eO4fq/KWGXTm4MtcOdKsKMRZe5BjNUupQc6+DhhSGcyS9cce6jbOHKHAKxfgpr2kM9uHIkfgcqVs3l1qRr0RKl2wySHjkW94KHSvEPeDxnhNbRlLwE2KU5YUG4jlEmybwsNPtTCKk3iQoxw+8CuPe1s7mrpw5nstn9Ukvtg3VOTHUsBCekWnkiGwjfmZ8cox7XmLehS98INWgwfa4FPWnbKS0JV4SzrSqpDNueOmLLY8z3TQT7TreuYlOP2+U375MePo695XH5Pvy+4UM5tm6wnemUNInmp9DOusYrlThA727zuWpafscJ1318blAgMBAAE=" />
+      <meta-data
+        android:name="com.reactnativehotfix.CHANNEL"
+        android:value="production" />
+      <meta-data
+        android:name="com.reactnativehotfix.RUNTIME_VERSION"
+        android:value="1.0.0" />
+      <meta-data
+        android:name="com.reactnativehotfix.ENABLE_IN_DEBUG"
+        android:value="true" />
+      <meta-data
+        android:name="com.reactnativehotfix.ALLOW_CLEARTEXT"
+        android:value="true" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

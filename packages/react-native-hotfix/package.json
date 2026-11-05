@@ -1,0 +1,55 @@
+{
+  "name": "react-native-hotfix",
+  "version": "0.1.0",
+  "description": "Signed over-the-air updates for React Native New Architecture.",
+  "main": "src/index.ts",
+  "react-native": "src/index.ts",
+  "types": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honglengleng/react-native-hotfix.git",
+    "directory": "packages/react-native-hotfix"
+  },
+  "homepage": "https://github.com/honglengleng/react-native-hotfix#readme",
+  "bugs": {
+    "url": "https://github.com/honglengleng/react-native-hotfix/issues"
+  },
+  "files": [
+    "src",
+    "android/src",
+    "android/build.gradle",
+    "ios",
+    "*.podspec",
+    "react-native.config.js",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "react-native",
+    "hotfix",
+    "ota",
+    "update",
+    "new-architecture"
+  ],
+  "codegenConfig": {
+    "name": "ReactNativeHotfixSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.reactnativehotfix"
+    }
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "react-native": ">=0.87.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=22.11.0"
+  },
+  "license": "MIT"
+}

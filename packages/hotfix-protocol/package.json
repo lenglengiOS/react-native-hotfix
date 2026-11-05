@@ -1,0 +1,43 @@
+{
+  "name": "react-native-hotfix-protocol",
+  "version": "0.1.0",
+  "description": "Protocol and validation helpers for React Native Hotfix.",
+  "type": "module",
+  "main": "src/index.mjs",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./src/index.mjs"
+    },
+    "./schema/*": "./schema/*"
+  },
+  "files": [
+    "src",
+    "types",
+    "schema",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/honglengleng/react-native-hotfix.git",
+    "directory": "packages/hotfix-protocol"
+  },
+  "homepage": "https://github.com/honglengleng/react-native-hotfix#readme",
+  "bugs": {
+    "url": "https://github.com/honglengleng/react-native-hotfix/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT"
+}

@@ -47,3 +47,6 @@ vendor/bundle/
 
 # Local environment files
 .env*.local
+
+# Hotfix build output and local signing keys
+.hotfix/

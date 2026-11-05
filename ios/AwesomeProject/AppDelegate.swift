@@ -2,6 +2,7 @@ import UIKit
 import React
 import React_RCTAppDelegate
 import ReactAppDependencyProvider
+import Hotfix
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,9 +41,12 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
 
   override func bundleURL() -> URL? {
 #if DEBUG
-    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    let developmentURL =
+      RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    return HotfixBundle.currentBundleURL(withFallbackURL: developmentURL)
 #else
-    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    let embeddedURL = Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    return HotfixBundle.currentBundleURL(withFallbackURL: embeddedURL)
 #endif
   }
 }

@@ -1,0 +1,62 @@
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+
+def safeExtGet(name, fallback) {
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : fallback
+}
+
+def isNewArchitectureEnabled() {
+  return project.hasProperty("newArchEnabled") &&
+    project.newArchEnabled.toString().toBoolean()
+}
+
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+
+if (isNewArchitectureEnabled()) {
+  apply plugin: "com.facebook.react"
+}
+
+android {
+  namespace "com.reactnativehotfix"
+  compileSdk safeExtGet("compileSdkVersion", 36)
+
+  defaultConfig {
+    minSdk safeExtGet("minSdkVersion", 24)
+    targetSdk safeExtGet("targetSdkVersion", 36)
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+
+  sourceSets {
+    main {
+      java.srcDirs += [
+        "${project.buildDir}/generated/source/codegen/java",
+        "${project.buildDir}/generated/source/codegen/kotlin"
+      ]
+    }
+  }
+}
+
+repositories {
+  google()
+  mavenCentral()
+  maven {
+    url "$rootDir/../node_modules/react-native/android"
+  }
+}
+
+dependencies {
+  implementation "com.facebook.react:react-android"
+}

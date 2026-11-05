@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://react-native-hotfix.dev/schema/update-manifest-1.schema.json",
+  "title": "React Native Hotfix Update Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocolVersion",
+    "id",
+    "createdAt",
+    "runtimeVersion",
+    "channel",
+    "platform",
+    "launchAsset",
+    "assets",
+    "metadata",
+    "rollback"
+  ],
+  "properties": {
+    "protocolVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}$"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "runtimeVersion": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}$"
+    },
+    "channel": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,63}$"
+    },
+    "platform": {
+      "enum": ["ios", "android"]
+    },
+    "launchAsset": {
+      "$ref": "#/$defs/asset"
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxFailedLaunches"],
+      "properties": {
+        "maxFailedLaunches": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        }
+      }
+    }
+  },
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "hash", "size", "contentType"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.?(?:/|$))(?!.*\\\\).+$"
+        },
+        "hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "contentType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      }
+    }
+  }
+}

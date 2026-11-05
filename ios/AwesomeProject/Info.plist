@@ -24,6 +24,18 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>HotfixAllowCleartext</key>
+	<true/>
+	<key>HotfixChannel</key>
+	<string>production</string>
+	<key>HotfixEnableInDebug</key>
+	<true/>
+	<key>HotfixManifestURL</key>
+	<string>http://127.0.0.1:3000/v1/check</string>
+	<key>HotfixPublicKey</key>
+	<string>MIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAw42OiBEYX7XYyEG4+R9pphSmBUZFZgQ7P0aaHDtOtz0fDG1h2hnHXoXAGcLF6M+34FEO+mNvcLcxLokeDdjBx2QHey1Cfxjm3ZIleUPSAyV2ac5VVTsp4ievcIxn79ttHtIyCxogxXWlrgEMlAiAfBohgCOoI15mbWvcKfXdfKupmTCgmCY/9s7LBfLb5Rqr3/E4eO4fq/KWGXTm4MtcOdKsKMRZe5BjNUupQc6+DhhSGcyS9cce6jbOHKHAKxfgpr2kM9uHIkfgcqVs3l1qRr0RKl2wySHjkW94KHSvEPeDxnhNbRlLwE2KU5YUG4jlEmybwsNPtTCKk3iQoxw+8CuPe1s7mrpw5nstn9Ukvtg3VOTHUsBCekWnkiGwjfmZ8cox7XmLehS98INWgwfa4FPWnbKS0JV4SzrSqpDNueOmLLY8z3TQT7TreuYlOP2+U375MePo695XH5Pvy+4UM5tm6wnemUNInmp9DOusYrlThA727zuWpafscJ1318blAgMBAAE=</string>
+	<key>HotfixRuntimeVersion</key>
+	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

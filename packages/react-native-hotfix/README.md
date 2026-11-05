@@ -8,11 +8,22 @@ Architecture.
 ## Install
 
 ```sh
-npm install react-native-hotfix
+npm install react-native-hotfix@0.1.1
+npm install -D react-native-hotfix-cli@0.1.1 react-native-hotfix-server@0.1.1
 ```
 
-Run `pod install` on iOS, rebuild the native apps, and follow the complete
-[integration guide](https://github.com/lenglengiOS/react-native-hotfix/blob/main/docs/getting-started.md).
+Before the SDK can load updates, complete these native steps:
+
+1. Generate a key pair with `npx hotfix keys generate --out .hotfix/keys`.
+2. Configure the public key, update URL, channel, and runtime version in
+   `AndroidManifest.xml` and `Info.plist`.
+3. Pass `HotfixBundle.getBundleFilePath(context)` to the Android React host.
+4. Override `bundleURL()` in the iOS React Native factory delegate.
+5. Wrap the React root with `HotfixProvider` and rebuild the native apps.
+
+The complete [integration guide](https://github.com/lenglengiOS/react-native-hotfix/blob/main/docs/getting-started.md)
+contains copy-paste native code, server setup, publishing, cold-start testing,
+rollback verification, and troubleshooting.
 
 ## JavaScript API
 

@@ -36,41 +36,81 @@
 详细设计见[架构文档](docs/zh-CN/architecture.md)、[安全模型](docs/zh-CN/security.md)
 和[发布流程](docs/zh-CN/releasing.md)。
 
-## 本地快速开始
+## 集成到现有 React Native App
 
 环境要求：Node.js 22.11+、JDK 17，以及 React Native 0.87 要求的 Xcode 16.1+。
 
 ```sh
-npm install
-npm run hotfix:setup
+npm install react-native-hotfix@0.1.1
+npm install -D react-native-hotfix-cli@0.1.1 react-native-hotfix-server@0.1.1
+npx hotfix keys generate --out .hotfix/keys
 ```
 
-`hotfix:setup` 会在需要时生成本地签名密钥，并把对应公钥写入示例 App 的原生
-配置。新项目请按[接入指南](docs/zh-CN/getting-started.md)进行配置。
+然后完成原生接入：
 
-启动服务端：
+1. 在 `AndroidManifest.xml` 中加入公钥、服务端 URL、channel 和 runtime。
+2. 在 `Info.plist` 中加入相同配置，并在 `AppDelegate.swift` 覆盖 `bundleURL()`。
+3. 修改 Android `MainApplication.kt`，将
+   `HotfixBundle.getBundleFilePath(applicationContext)` 传给 `getDefaultReactHost`。
+4. 执行 `pod install`，并重新构建 Android 和 iOS 原生 App。
+5. 使用 `HotfixProvider` 包裹 React 根节点。
+6. 重新安装原生 App 后，才能测试第一次热更新。
+
+完整的可复制配置见[接入指南](docs/zh-CN/getting-started.md)，其中包含
+Android/iOS 文件、本地服务端、bundle 发布、冷启动验证、回滚测试、API 和
+常见问题。
+
+启动本地服务端：
 
 ```sh
 HOTFIX_PRIVATE_KEY=.hotfix/keys/private.pem \
 HOTFIX_ADMIN_TOKEN=replace-with-a-long-random-token \
-npm run server
+HOTFIX_STORAGE_DIR=.hotfix/server \
+npx hotfix-server
 ```
 
 构建并发布更新：
 
 ```sh
-npm run hotfix:build
+npx hotfix build \
+  --platform all \
+  --channel production \
+  --runtime-version 1.0.0 \
+  --output .hotfix/dist
 
 HOTFIX_ADMIN_TOKEN=replace-with-a-long-random-token \
-node packages/hotfix-cli/bin/hotfix.mjs publish \
-  --server http://localhost:3000 \
+npx hotfix publish \
+  --server http://127.0.0.1:3000 \
   --input .hotfix/dist/ios-1.0.0 \
-  --rollout-percent 10
+  --rollout-percent 5
 ```
 
 Android 模拟器通过 `10.0.2.2:3000` 访问服务端，iOS 模拟器使用
 `127.0.0.1:3000`。点击 **Check for update**，然后彻底关闭并冷启动 App，
 即可激活已下载的 bundle。
+
+## 运行仓库自带示例
+
+```sh
+npm install
+npm run hotfix:setup
+npm run server
+```
+
+`hotfix:setup` 会在需要时生成签名密钥，并把公钥写入示例 App 的原生配置。
+
+## API 概览
+
+```tsx
+import { Hotfix, HotfixProvider, useHotfix } from 'react-native-hotfix';
+
+<HotfixProvider>
+  <App />
+</HotfixProvider>;
+
+const result = await Hotfix.checkForUpdate();
+const state = await Hotfix.getState();
+```
 
 ## 开发与验证
 

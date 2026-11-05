@@ -44,42 +44,85 @@ See [Architecture](docs/architecture.md), [Security](docs/security.md), and
 [Release workflow](docs/releasing.md) for the detailed design. Chinese versions
 are available under [`docs/zh-CN/`](docs/zh-CN/).
 
-## Local quick start
+## Integrate into your React Native app
 
 Prerequisites: Node.js 22.11+, JDK 17, and Xcode 16.1+ for React Native 0.87.
 
 ```sh
-npm install
-npm run hotfix:setup
+npm install react-native-hotfix@0.1.1
+npm install -D react-native-hotfix-cli@0.1.1 react-native-hotfix-server@0.1.1
+npx hotfix keys generate --out .hotfix/keys
 ```
 
-`hotfix:setup` generates a local signing key if needed and writes its public key
-into this demo's native configuration. For a new project, follow
-[Getting started](docs/getting-started.md).
+Then complete the native integration:
 
-Start the server:
+1. Add the public key, server URL, channel, and runtime version to
+   `AndroidManifest.xml`.
+2. Add the same values to `Info.plist` and override `bundleURL()` in
+   `AppDelegate.swift`.
+3. Change Android `MainApplication.kt` to pass
+   `HotfixBundle.getBundleFilePath(applicationContext)` to `getDefaultReactHost`.
+4. Run `pod install` and rebuild both native applications.
+5. Wrap the React root with `HotfixProvider`.
+6. Rebuild and install the native app before testing the first update.
+
+The complete copy-and-paste guide is
+[Getting started](docs/getting-started.md). It includes the exact Android and
+iOS files, local server startup, bundle publishing, cold-start verification,
+rollback testing, API reference, and troubleshooting.
+
+Start a local server:
 
 ```sh
 HOTFIX_PRIVATE_KEY=.hotfix/keys/private.pem \
 HOTFIX_ADMIN_TOKEN=replace-with-a-long-random-token \
-npm run server
+HOTFIX_STORAGE_DIR=.hotfix/server \
+npx hotfix-server
 ```
 
 Build and publish an update:
 
 ```sh
-npm run hotfix:build
+npx hotfix build \
+  --platform all \
+  --channel production \
+  --runtime-version 1.0.0 \
+  --output .hotfix/dist
 
 HOTFIX_ADMIN_TOKEN=replace-with-a-long-random-token \
-node packages/hotfix-cli/bin/hotfix.mjs publish \
-  --server http://localhost:3000 \
+npx hotfix publish \
+  --server http://127.0.0.1:3000 \
   --input .hotfix/dist/ios-1.0.0 \
-  --rollout-percent 10
+  --rollout-percent 5
 ```
 
 Run Android against `10.0.2.2:3000` or iOS against `127.0.0.1:3000`, then tap
 **Check for update**. Kill and cold-start the app to activate the downloaded
 bundle.
+
+## Run this repository demo
+
+```sh
+npm install
+npm run hotfix:setup
+npm run server
+```
+
+`hotfix:setup` generates a local signing key if needed and writes its public key
+into this demo's native configuration.
+
+## API at a glance
+
+```tsx
+import { Hotfix, HotfixProvider, useHotfix } from 'react-native-hotfix';
+
+<HotfixProvider>
+  <App />
+</HotfixProvider>;
+
+const result = await Hotfix.checkForUpdate();
+const state = await Hotfix.getState();
+```
 
 ## Development
 

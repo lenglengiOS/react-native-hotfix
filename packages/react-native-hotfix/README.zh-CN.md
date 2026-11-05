@@ -7,10 +7,20 @@
 ## 安装
 
 ```sh
-npm install react-native-hotfix
+npm install react-native-hotfix@0.1.1
+npm install -D react-native-hotfix-cli@0.1.1 react-native-hotfix-server@0.1.1
 ```
 
-iOS 需要执行 `pod install` 并重新构建原生 App。完整接入步骤见
+SDK 加载更新前必须完成以下原生步骤：
+
+1. 执行 `npx hotfix keys generate --out .hotfix/keys` 生成密钥。
+2. 在 `AndroidManifest.xml` 和 `Info.plist` 配置公钥、更新地址、channel
+   和 runtime version。
+3. Android 将 `HotfixBundle.getBundleFilePath(context)` 传给 React Host。
+4. iOS 在 React Native factory delegate 中覆盖 `bundleURL()`。
+5. 使用 `HotfixProvider` 包裹 React 根节点，并重新构建原生 App。
+
+完整的可复制原生代码、服务端启动、发布、冷启动验证、回滚测试和故障排查见
 [中文接入指南](https://github.com/lenglengiOS/react-native-hotfix/blob/main/docs/zh-CN/getting-started.md)。
 
 ## JavaScript API

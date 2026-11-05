@@ -11,7 +11,7 @@ design follows the core ideas used by Expo Updates: signed manifests, explicit
 runtime compatibility, downloaded asset trees, launch-time bundle selection,
 and crash rollback. It does not depend on Expo or Expo Updates.
 
-> Status: `0.1.0` reference implementation. The protocol and native APIs are
+> Status: `0.1.1` reference implementation. The protocol and native APIs are
 > usable, but the project still needs a broader device/CI matrix and a
 > production deployment security review before critical production use.
 
@@ -108,7 +108,7 @@ For the GitHub workflow, configure an `NPM_TOKEN` repository secret and push a
 version tag:
 
 ```sh
-git tag v0.1.0
+git tag v0.1.1
 git push github master --follow-tags
 ```
 

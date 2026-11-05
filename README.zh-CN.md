@@ -9,7 +9,7 @@
 签名清单、明确的运行时兼容约束、按更新目录隔离资源、启动时选择 bundle，
 以及启动失败自动回滚。本项目不依赖 Expo 或 Expo Updates。
 
-> 状态：`0.1.0` 参考实现。协议和原生 API 已可使用，但在关键生产环境上线前，
+> 状态：`0.1.1` 参考实现。协议和原生 API 已可使用，但在关键生产环境上线前，
 > 仍需要扩大设备/CI 测试矩阵并完成独立的生产安全审查。
 
 ## 包结构
@@ -98,7 +98,7 @@ npm run release:publish
 GitHub Actions 发布前需要配置仓库 Secret `NPM_TOKEN`，然后推送版本 Tag：
 
 ```sh
-git tag v0.1.0
+git tag v0.1.1
 git push github master --follow-tags
 ```
 

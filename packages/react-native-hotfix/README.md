@@ -12,7 +12,7 @@ npm install react-native-hotfix
 ```
 
 Run `pod install` on iOS, rebuild the native apps, and follow the complete
-[integration guide](https://github.com/honglengleng/react-native-hotfix/blob/main/docs/getting-started.md).
+[integration guide](https://github.com/lenglengiOS/react-native-hotfix/blob/main/docs/getting-started.md).
 
 ## JavaScript API
 

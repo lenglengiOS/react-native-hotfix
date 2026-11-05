@@ -2,6 +2,12 @@
 
 [English](CHANGELOG.md) | **简体中文**
 
+## 0.1.1
+
+- 修正仓库元数据和文档链接。
+- 补充正式公开 GitHub 仓库地址。
+- 增加服务端与协议 SDK 的类型入口及包级双语文档。
+
 ## 0.1.0
 
 - 首个 React Native 0.87 新架构 TurboModule 客户端。

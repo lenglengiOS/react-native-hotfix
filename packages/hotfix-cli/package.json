@@ -1,6 +1,6 @@
 {
   "name": "react-native-hotfix-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build and publish React Native Hotfix updates.",
   "type": "module",
   "bin": {
@@ -14,20 +14,20 @@
     "LICENSE"
   ],
   "dependencies": {
-    "react-native-hotfix-protocol": "0.1.0",
-    "react-native-hotfix-server": "0.1.0"
+    "react-native-hotfix-protocol": "0.1.1",
+    "react-native-hotfix-server": "0.1.1"
   },
   "engines": {
     "node": ">=22.11.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/honglengleng/react-native-hotfix.git",
+    "url": "git+https://github.com/lenglengiOS/react-native-hotfix.git",
     "directory": "packages/hotfix-cli"
   },
-  "homepage": "https://github.com/honglengleng/react-native-hotfix#readme",
+  "homepage": "https://github.com/lenglengiOS/react-native-hotfix#readme",
   "bugs": {
-    "url": "https://github.com/honglengleng/react-native-hotfix/issues"
+    "url": "https://github.com/lenglengiOS/react-native-hotfix/issues"
   },
   "publishConfig": {
     "access": "public",

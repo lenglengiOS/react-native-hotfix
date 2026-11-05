@@ -11,7 +11,7 @@ npm install react-native-hotfix
 ```
 
 iOS 需要执行 `pod install` 并重新构建原生 App。完整接入步骤见
-[中文接入指南](https://github.com/honglengleng/react-native-hotfix/blob/main/docs/zh-CN/getting-started.md)。
+[中文接入指南](https://github.com/lenglengiOS/react-native-hotfix/blob/main/docs/zh-CN/getting-started.md)。
 
 ## JavaScript API
 

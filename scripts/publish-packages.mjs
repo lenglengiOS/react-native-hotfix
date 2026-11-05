@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
 import { execFileSync, spawnSync } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
+const expectedVersion = JSON.parse(
+  await readFile(path.join(root, 'packages/hotfix-protocol/package.json'), 'utf8'),
+).version;
 const packageOrder = [
   'react-native-hotfix-protocol',
   'react-native-hotfix-server',
@@ -23,8 +27,9 @@ const tag = execFileSync('git', ['describe', '--tags', '--exact-match', 'HEAD'],
   cwd: root,
   encoding: 'utf8',
 });
-if (tag.trim() !== 'v0.1.0') {
-  throw new Error(`HEAD must be tagged v0.1.0, found ${tag.trim() || 'no tag'}.`);
+const expectedTag = `v${expectedVersion}`;
+if (tag.trim() !== expectedTag) {
+  throw new Error(`HEAD must be tagged ${expectedTag}, found ${tag.trim() || 'no tag'}.`);
 }
 
 const status = spawnSync(

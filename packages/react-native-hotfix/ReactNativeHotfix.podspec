@@ -7,9 +7,9 @@ Pod::Spec.new do |s|
   s.module_name = "Hotfix"
   s.version = package["version"]
   s.summary = package["description"]
-  s.homepage = "https://github.com/honglengleng/react-native-hotfix"
+  s.homepage = "https://github.com/lenglengiOS/react-native-hotfix"
   s.license = { :type => "MIT", :file => "LICENSE" }
-  s.authors = { "React Native Hotfix contributors" => "https://github.com/honglengleng" }
+  s.authors = { "React Native Hotfix contributors" => "https://github.com/lenglengiOS" }
   s.platforms = { :ios => "15.1" }
   s.source = { :path => "." }
   s.source_files = "ios/**/*.{h,m,mm,swift}"

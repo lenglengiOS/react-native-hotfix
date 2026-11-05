@@ -1,18 +1,18 @@
 {
   "name": "react-native-hotfix",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Signed over-the-air updates for React Native New Architecture.",
   "main": "src/index.ts",
   "react-native": "src/index.ts",
   "types": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/honglengleng/react-native-hotfix.git",
+    "url": "git+https://github.com/lenglengiOS/react-native-hotfix.git",
     "directory": "packages/react-native-hotfix"
   },
-  "homepage": "https://github.com/honglengleng/react-native-hotfix#readme",
+  "homepage": "https://github.com/lenglengiOS/react-native-hotfix#readme",
   "bugs": {
-    "url": "https://github.com/honglengleng/react-native-hotfix/issues"
+    "url": "https://github.com/lenglengiOS/react-native-hotfix/issues"
   },
   "files": [
     "src",

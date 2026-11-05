@@ -33,10 +33,10 @@ Native runtime 变化仍然必须通过应用商店发布新的原生版本。
 请使用相同版本的 npm 包：
 
 ```text
-react-native-hotfix@0.1.1
-react-native-hotfix-cli@0.1.1
-react-native-hotfix-server@0.1.1
-react-native-hotfix-protocol@0.1.1
+react-native-hotfix@0.1.2
+react-native-hotfix-cli@0.1.2
+react-native-hotfix-server@0.1.2
+react-native-hotfix-protocol@0.1.2
 ```
 
 ## 第 1 步：安装 SDK
@@ -44,8 +44,8 @@ react-native-hotfix-protocol@0.1.1
 在 React Native 项目根目录执行：
 
 ```sh
-npm install react-native-hotfix@0.1.1
-npm install -D react-native-hotfix-cli@0.1.1 react-native-hotfix-server@0.1.1
+npm install react-native-hotfix@0.1.2
+npm install -D react-native-hotfix-cli@0.1.2 react-native-hotfix-server@0.1.2
 ```
 
 `react-native-hotfix` 是 App 运行时客户端 SDK。CLI 和服务端包供开发者与更新

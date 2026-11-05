@@ -8,8 +8,8 @@ Architecture.
 ## Install
 
 ```sh
-npm install react-native-hotfix@0.1.1
-npm install -D react-native-hotfix-cli@0.1.1 react-native-hotfix-server@0.1.1
+npm install react-native-hotfix@0.1.2
+npm install -D react-native-hotfix-cli@0.1.2 react-native-hotfix-server@0.1.2
 ```
 
 Before the SDK can load updates, complete these native steps:

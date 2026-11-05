@@ -83,7 +83,7 @@ The repository-level release script publishes packages in dependency order:
 ```sh
 npm login --registry https://registry.npmjs.org/
 npm run release:check
-git tag v0.1.1
+git tag v0.1.2
 npm run release:publish
 git push github master --follow-tags
 ```

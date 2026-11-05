@@ -2,6 +2,13 @@
 
 **English** | [简体中文](CHANGELOG.zh-CN.md)
 
+## 0.1.2
+
+- Expanded the main README into a complete, copy-and-paste integration guide.
+- Documented native setup, automatic checks, server deployment, cold-start
+  activation, rollback verification, and troubleshooting.
+- Synchronized the published package READMEs with the current installation flow.
+
 ## 0.1.1
 
 - Corrected repository metadata and documentation links.

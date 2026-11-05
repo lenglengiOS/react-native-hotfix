@@ -1,6 +1,6 @@
 {
   "name": "react-native-hotfix-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Build and publish React Native Hotfix updates.",
   "type": "module",
   "bin": {
@@ -14,8 +14,8 @@
     "LICENSE"
   ],
   "dependencies": {
-    "react-native-hotfix-protocol": "0.1.1",
-    "react-native-hotfix-server": "0.1.1"
+    "react-native-hotfix-protocol": "0.1.2",
+    "react-native-hotfix-server": "0.1.2"
   },
   "engines": {
     "node": ">=22.11.0"

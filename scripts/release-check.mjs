@@ -18,7 +18,6 @@ const forbiddenPathFragments = [
   '/.hotfix/',
   '/node_modules/',
   'private.pem',
-  '.env',
 ];
 const ignoredDocumentationDirectories = new Set([
   '.git',
@@ -64,6 +63,37 @@ async function assertBilingualDocumentation(directory) {
 
 await assertBilingualDocumentation(root);
 
+for (const file of [
+  'Caddyfile.example',
+  'Dockerfile',
+  'docker-compose.yml',
+  'server.env.example',
+]) {
+  const rootDeploymentFile = await readFile(path.join(root, 'deploy', file), 'utf8');
+  const packageDeploymentFile = await readFile(
+    path.join(root, 'packages/hotfix-server/deploy', file),
+    'utf8',
+  );
+  if (rootDeploymentFile !== packageDeploymentFile) {
+    throw new Error(`Server deployment copy is out of sync: deploy/${file}`);
+  }
+}
+
+const serverReadme = await readFile(
+  path.join(root, 'packages/hotfix-server/README.md'),
+  'utf8',
+);
+const serverReadmeZh = await readFile(
+  path.join(root, 'packages/hotfix-server/README.zh-CN.md'),
+  'utf8',
+);
+if (
+  !serverReadme.includes('# Private server deployment') ||
+  !serverReadmeZh.includes('# 服务端私有化部署')
+) {
+  throw new Error('Server README is missing the embedded deployment guide');
+}
+
 let expectedVersion;
 const packages = [];
 for (const directory of packageDirectories) {
@@ -106,7 +136,14 @@ for (const { manifest } of packages) {
   const [{ files, entryCount, name, version }] = JSON.parse(output);
   const forbidden = files
     .map(file => `/${file.path}`)
-    .filter(file => forbiddenPathFragments.some(fragment => file.includes(fragment)));
+    .filter(file => {
+      const basename = path.basename(file);
+      return (
+        forbiddenPathFragments.some(fragment => file.includes(fragment)) ||
+        basename === '.env' ||
+        (basename.startsWith('.env.') && !basename.endsWith('.example'))
+      );
+    });
   if (forbidden.length > 0) {
     throw new Error(`${name} contains forbidden files:\n${forbidden.join('\n')}`);
   }

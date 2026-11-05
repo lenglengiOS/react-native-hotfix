@@ -1673,7 +1673,7 @@ PODS:
     - React-utils (= 0.87.0)
     - ReactNativeDependencies
   - ReactNativeDependencies (0.87.0)
-  - ReactNativeHotfix (0.1.2):
+  - ReactNativeHotfix (0.1.3):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2052,7 +2052,7 @@ SPEC CHECKSUMS:
   ReactCodegen: dca6757feb1e977c5cf6708872d7fe48b5a45528
   ReactCommon: 5f5a302748322015f2e3334869cdd9b4d0395846
   ReactNativeDependencies: ec5530432d8191b38e278117d498aaff05ea9d6f
-  ReactNativeHotfix: 924f1e29dcb8f57dd10a9116a1e3329c360879a7
+  ReactNativeHotfix: b311958599f7a9ff78cd038e032f95db7d216001
   SocketRocket: 37aec555668fb852ec12e3c0de59a86ca58f0871
   Yoga: d1c536142c5ff8ec8cd856ab2a7c227a1d875c8e
 

@@ -131,7 +131,7 @@ Install the server package:
 
 ```sh
 sudo npm install --prefix /opt/react-native-hotfix \
-  react-native-hotfix-server@0.1.2
+  react-native-hotfix-server@0.1.3
 ```
 
 Install secrets:

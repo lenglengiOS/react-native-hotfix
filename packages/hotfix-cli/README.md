@@ -8,7 +8,7 @@ the self-hosted server.
 ## Install
 
 ```sh
-npm install -D react-native-hotfix-cli@0.1.2
+npm install -D react-native-hotfix-cli@0.1.3
 ```
 
 ## Complete workflow

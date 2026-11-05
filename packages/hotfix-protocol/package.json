@@ -1,6 +1,6 @@
 {
   "name": "react-native-hotfix-protocol",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Protocol and validation helpers for React Native Hotfix.",
   "type": "module",
   "main": "src/index.mjs",

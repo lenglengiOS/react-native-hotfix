@@ -35,10 +35,10 @@ Native runtime 变化仍然必须通过应用商店发布新的原生版本。
 请使用相同版本的 npm 包：
 
 ```text
-react-native-hotfix@0.1.2
-react-native-hotfix-cli@0.1.2
-react-native-hotfix-server@0.1.2
-react-native-hotfix-protocol@0.1.2
+react-native-hotfix@0.1.3
+react-native-hotfix-cli@0.1.3
+react-native-hotfix-server@0.1.3
+react-native-hotfix-protocol@0.1.3
 ```
 
 ## 第 1 步：安装 SDK
@@ -46,8 +46,8 @@ react-native-hotfix-protocol@0.1.2
 在 React Native 项目根目录执行：
 
 ```sh
-npm install react-native-hotfix@0.1.2
-npm install -D react-native-hotfix-cli@0.1.2 react-native-hotfix-server@0.1.2
+npm install react-native-hotfix@0.1.3
+npm install -D react-native-hotfix-cli@0.1.3 react-native-hotfix-server@0.1.3
 ```
 
 `react-native-hotfix` 是 App 运行时客户端 SDK。CLI 和服务端包供开发者与更新
@@ -518,7 +518,7 @@ bundle。
 ## npm 包
 
 - `react-native-hotfix`：React Native 客户端 SDK 与新架构 TurboModule
-- `react-native-hotfix-server`：清单签名与不可变资源服务端
+- [`react-native-hotfix-server`](https://github.com/lenglengiOS/react-native-hotfix-server)：清单签名与不可变资源服务端
 - `react-native-hotfix-cli`：Hermes 构建和发布命令
 - `react-native-hotfix-protocol`：清单 Schema 与共享校验
 
@@ -527,6 +527,7 @@ bundle。
 - [架构说明](docs/zh-CN/architecture.md)
 - [安全模型](docs/zh-CN/security.md)
 - [服务端私有化部署](docs/zh-CN/server-deployment.md)
+- [服务端 SDK 独立仓库](https://github.com/lenglengiOS/react-native-hotfix-server)
 - [发布流程](docs/zh-CN/releasing.md)
 - [English integration guide](docs/getting-started.md)
 

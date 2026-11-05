@@ -2,6 +2,14 @@
 
 **English** | [简体中文](CHANGELOG.zh-CN.md)
 
+## 0.1.3
+
+- Published the server SDK as the standalone
+  `lenglengiOS/react-native-hotfix-server` repository.
+- Embedded the complete private deployment guide in the server README.
+- Included Docker, Compose, Caddy, and systemd environment examples in the npm
+  server package.
+
 ## 0.1.2
 
 - Expanded the main README into a complete, copy-and-paste integration guide.

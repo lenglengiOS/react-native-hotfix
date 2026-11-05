@@ -7,7 +7,7 @@
 ## 安装
 
 ```sh
-npm install -D react-native-hotfix-cli@0.1.2
+npm install -D react-native-hotfix-cli@0.1.3
 ```
 
 ## 完整流程

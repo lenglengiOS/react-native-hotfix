@@ -2,6 +2,13 @@
 
 [English](CHANGELOG.md) | **简体中文**
 
+## 0.1.3
+
+- 服务端 SDK 发布为独立仓库
+  `lenglengiOS/react-native-hotfix-server`。
+- 服务端 README 直接包含完整的私有化部署指南。
+- npm 服务端包包含 Docker、Compose、Caddy 和 systemd 环境示例。
+
 ## 0.1.2
 
 - 将主 README 扩展为可直接复制操作的完整接入手册。

@@ -1,6 +1,6 @@
 FROM node:22-bookworm-slim
 
-ARG HOTFIX_VERSION=0.1.2
+ARG HOTFIX_VERSION=0.1.3
 
 RUN npm install --global "react-native-hotfix-server@${HOTFIX_VERSION}" \
   && npm cache clean --force \

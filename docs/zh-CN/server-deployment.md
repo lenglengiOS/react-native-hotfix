@@ -123,7 +123,7 @@ sudo install -d -o root -g hotfix -m 750 /etc/react-native-hotfix
 
 ```sh
 sudo npm install --prefix /opt/react-native-hotfix \
-  react-native-hotfix-server@0.1.2
+  react-native-hotfix-server@0.1.3
 ```
 
 安装私钥：

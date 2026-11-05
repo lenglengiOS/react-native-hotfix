@@ -7,8 +7,8 @@
 ## 安装
 
 ```sh
-npm install react-native-hotfix@0.1.2
-npm install -D react-native-hotfix-cli@0.1.2 react-native-hotfix-server@0.1.2
+npm install react-native-hotfix@0.1.3
+npm install -D react-native-hotfix-cli@0.1.3 react-native-hotfix-server@0.1.3
 ```
 
 SDK 加载更新前必须完成以下原生步骤：

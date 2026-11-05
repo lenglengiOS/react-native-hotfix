@@ -37,10 +37,10 @@ new store build.
 Use the npm packages at the same version:
 
 ```text
-react-native-hotfix@0.1.2
-react-native-hotfix-cli@0.1.2
-react-native-hotfix-server@0.1.2
-react-native-hotfix-protocol@0.1.2
+react-native-hotfix@0.1.3
+react-native-hotfix-cli@0.1.3
+react-native-hotfix-server@0.1.3
+react-native-hotfix-protocol@0.1.3
 ```
 
 ## Step 1: Install the SDK
@@ -48,8 +48,8 @@ react-native-hotfix-protocol@0.1.2
 Run the following commands in the React Native project root:
 
 ```sh
-npm install react-native-hotfix@0.1.2
-npm install -D react-native-hotfix-cli@0.1.2 react-native-hotfix-server@0.1.2
+npm install react-native-hotfix@0.1.3
+npm install -D react-native-hotfix-cli@0.1.3 react-native-hotfix-server@0.1.3
 ```
 
 `react-native-hotfix` is the runtime client SDK. The CLI and server packages are
@@ -542,7 +542,7 @@ directory. Do not upload only the launch bundle.
 ## Packages
 
 - `react-native-hotfix`: React Native client SDK and New Architecture TurboModule
-- `react-native-hotfix-server`: signed-manifest and immutable-asset server
+- [`react-native-hotfix-server`](https://github.com/lenglengiOS/react-native-hotfix-server): signed-manifest and immutable-asset server
 - `react-native-hotfix-cli`: Hermes build and publishing commands
 - `react-native-hotfix-protocol`: manifest schema and shared validation
 
@@ -551,6 +551,7 @@ directory. Do not upload only the launch bundle.
 - [Architecture](docs/architecture.md)
 - [Security model](docs/security.md)
 - [Private server deployment](docs/server-deployment.md)
+- [Server SDK repository](https://github.com/lenglengiOS/react-native-hotfix-server)
 - [Release workflow](docs/releasing.md)
 - [中文接入手册](docs/zh-CN/getting-started.md)
 

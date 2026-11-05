@@ -35,10 +35,10 @@ new store build.
 Use the npm packages at the same version:
 
 ```text
-react-native-hotfix@0.1.2
-react-native-hotfix-cli@0.1.2
-react-native-hotfix-server@0.1.2
-react-native-hotfix-protocol@0.1.2
+react-native-hotfix@0.1.3
+react-native-hotfix-cli@0.1.3
+react-native-hotfix-server@0.1.3
+react-native-hotfix-protocol@0.1.3
 ```
 
 ## Step 1: Install the SDK
@@ -46,8 +46,8 @@ react-native-hotfix-protocol@0.1.2
 Run the following commands in the React Native project root:
 
 ```sh
-npm install react-native-hotfix@0.1.2
-npm install -D react-native-hotfix-cli@0.1.2 react-native-hotfix-server@0.1.2
+npm install react-native-hotfix@0.1.3
+npm install -D react-native-hotfix-cli@0.1.3 react-native-hotfix-server@0.1.3
 ```
 
 `react-native-hotfix` is the runtime client SDK. The CLI and server packages are

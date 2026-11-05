@@ -81,7 +81,7 @@ runtime/channel/platform 完全匹配的更新。
 ```sh
 npm login --registry https://registry.npmjs.org/
 npm run release:check
-git tag v0.1.2
+git tag v0.1.3
 npm run release:publish
 git push github master --follow-tags
 ```

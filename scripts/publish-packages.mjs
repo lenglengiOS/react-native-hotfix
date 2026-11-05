@@ -52,6 +52,25 @@ execFileSync(process.execPath, ['scripts/release-check.mjs'], {
 
 for (const name of packageOrder) {
   console.log(`\nPublishing ${name}...`);
+  const existing = spawnSync(
+    'npm',
+    [
+      'view',
+      `${name}@${expectedVersion}`,
+      'version',
+      '--registry',
+      'https://registry.npmjs.org/',
+    ],
+    {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    },
+  );
+  if (existing.status === 0 && existing.stdout.trim() === expectedVersion) {
+    console.log(`${name}@${expectedVersion} already exists; skipping.`);
+    continue;
+  }
   const publishArguments = [
     'publish',
     '--workspace',

@@ -50,3 +50,4 @@ vendor/bundle/
 
 # Hotfix build output and local signing keys
 .hotfix/
+.secrets/

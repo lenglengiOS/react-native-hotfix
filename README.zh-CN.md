@@ -445,6 +445,9 @@ Debug 构建连接 Metro 时，Metro 仍可能作为 JS 来源。Debug 开关只
 当前 Node 服务端是单节点参考实现。多实例部署需要将本地 channel 指针替换为
 事务性数据库，并使用共享对象存储。
 
+Docker、systemd、私有 TLS、管理接口隔离、备份与恢复步骤见
+[服务端私有化部署](docs/zh-CN/server-deployment.md)。
+
 ## JavaScript API
 
 ### `Hotfix.checkForUpdate()`
@@ -523,6 +526,7 @@ bundle。
 
 - [架构说明](docs/zh-CN/architecture.md)
 - [安全模型](docs/zh-CN/security.md)
+- [服务端私有化部署](docs/zh-CN/server-deployment.md)
 - [发布流程](docs/zh-CN/releasing.md)
 - [English integration guide](docs/getting-started.md)
 

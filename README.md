@@ -464,6 +464,9 @@ The included Node server is a single-node reference deployment. For multiple
 instances, replace its local channel pointers with a transactional database
 and shared object storage.
 
+For Docker, systemd, private TLS, admin isolation, backup, and restore
+instructions, see [Private server deployment](docs/server-deployment.md).
+
 ## JavaScript API
 
 ### `Hotfix.checkForUpdate()`
@@ -547,6 +550,7 @@ directory. Do not upload only the launch bundle.
 
 - [Architecture](docs/architecture.md)
 - [Security model](docs/security.md)
+- [Private server deployment](docs/server-deployment.md)
 - [Release workflow](docs/releasing.md)
 - [中文接入手册](docs/zh-CN/getting-started.md)
 
